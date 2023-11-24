@@ -33,6 +33,18 @@ func TestBucketList(t *testing.T) {
 	}
 }
 
+func TestUploadFile(t *testing.T) {
+	bucket, err := client.Bucket(BucketName)
+	if err != nil {
+		t.Log(err)
+	}
+
+	err = bucket.PutObjectFromFile("mydir/test.go", "oss_test.go")
+	if err != nil {
+		t.Log(err)
+	}
+}
+
 func init() {
 	c, err := oss.New(OssEndpoint, AccessKey, AccessKeySecret)
 	if err != nil {
