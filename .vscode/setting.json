@@ -1,0 +1,3 @@
+{
+  "go.testEnvFile":"${worlspaceFolder}/ect/unit_test.env"
+}
