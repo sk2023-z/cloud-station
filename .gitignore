@@ -13,6 +13,8 @@
 etc/unit_test.env
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+cloud-station.exe
+cloud-station
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
