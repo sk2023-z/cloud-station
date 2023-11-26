@@ -12,18 +12,34 @@ var (
 	_ store.Uploader = &AliOssStore{}
 )
 
-func NewAliOssStore(endpoint, accesskey, accessSercret string) (*AliOssStore, error) {
-	c, err := oss.New(endpoint, accesskey, accessSercret)
+type AliOssStore struct {
+	client *oss.Client
+}
+type Options struct {
+	Endpoint     string
+	AccessKey    string
+	AccessSecret string
+}
+
+func (o *Options) Validate() error {
+	if o.Endpoint == "" || o.AccessKey == "" || o.AccessSecret == "" {
+		return fmt.Errorf("endpoint, access_key, access_secret has one empty")
+	}
+	return nil
+}
+
+func NewAliOssStore(opts *Options) (*AliOssStore, error) {
+	if err := opts.Validate(); err != nil {
+		return nil, err
+	}
+
+	c, err := oss.New(opts.Endpoint, opts.AccessKey, opts.AccessSecret)
 	if err != nil {
 		return nil, err
 	}
 	return &AliOssStore{
 		client: c,
 	}, nil
-}
-
-type AliOssStore struct {
-	client *oss.Client
 }
 
 func (s *AliOssStore) Upload(bucketName string, objectKey string, fileName string) error {
