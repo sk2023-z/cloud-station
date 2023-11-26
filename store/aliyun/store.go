@@ -9,11 +9,15 @@ import (
 
 var (
 	// 对象是否实现了接口的约束
-	_ store.Uploader = &AliOssStore{}
+	// _ store.Uploader = &AliOssStore{}
+	// 不需要类型的值只要类型的判断
+
+	_ store.Uploader = (*AliOssStore)(nil)
 )
 
 type AliOssStore struct {
-	client *oss.Client
+	client   *oss.Client
+	listener oss.ProgressListener
 }
 type Options struct {
 	Endpoint     string
@@ -38,18 +42,19 @@ func NewAliOssStore(opts *Options) (*AliOssStore, error) {
 		return nil, err
 	}
 	return &AliOssStore{
-		client: c,
+		client:   c,
+		listener: NewDefaultProgressListener(),
 	}, nil
 }
 
-func (s *AliOssStore) Upload(bucketName string, objectKey string, fileName string) error {
+func (s *AliOssStore) Upload(bucketName, objectKey, fileName string) error {
 
 	bucket, err := s.client.Bucket(bucketName)
 	if err != nil {
 		return err
 	}
 
-	if err := bucket.PutObjectFromFile(objectKey, fileName); err != nil {
+	if err := bucket.PutObjectFromFile(objectKey, fileName, oss.Progress(s.listener)); err != nil {
 		return err
 	}
 
