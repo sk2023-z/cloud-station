@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
-	"github.com/zjy-z/cloud-station/store"
+	"github.com/sk2023-z/cloud-station/store"
 )
 
 var (

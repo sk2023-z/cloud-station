@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/zjy-z/cloud-station/store"
-	"github.com/zjy-z/cloud-station/store/aliyun"
+	"github.com/sk2023-z/cloud-station/store"
+	"github.com/sk2023-z/cloud-station/store/aliyun"
 )
 
 var (

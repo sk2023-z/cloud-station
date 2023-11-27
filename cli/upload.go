@@ -3,9 +3,9 @@ package cli
 import (
 	"fmt"
 
+	"github.com/sk2023-z/cloud-station/store"
+	"github.com/sk2023-z/cloud-station/store/aliyun"
 	"github.com/spf13/cobra"
-	"github.com/zjy-z/cloud-station/store"
-	"github.com/zjy-z/cloud-station/store/aliyun"
 )
 
 var (

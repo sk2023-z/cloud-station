@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/zjy-z/cloud-station/cli"
+	"github.com/sk2023-z/cloud-station/cli"
 )
 
 func main() {
