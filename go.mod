@@ -1,4 +1,4 @@
-module github.com/zjy-z/cloud-station
+module github.com/sk2023-z/cloud-station
 
 go 1.21.3
 
